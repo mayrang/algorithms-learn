@@ -1,20 +1,31 @@
-let numbers = [1, 1, 1, 1, 1];
-let target_number = 3;
+let allWays = [];
 
 function getCountOfWaysToTargetByDoingPlusOrMinus(array, target) {
-  let count = 0;
-  const func = (index, currentSum) => {
-    if (currentSum === target) {
-      count += 1;
-      return;
-    } else if (index === array.length) {
-      return;
+  allWays = [];
+  getAllWaysByDoingPlusOrMinus(array, 0, 0);
+
+  let targetCount = 0;
+
+  for (const way of allWays) {
+    if (target === way) {
+      targetCount += 1;
     }
-    currentSum += array[index];
-    return func(index + 1, currentSum);
-  };
-  func(0, 0);
-  return count;
+  }
+
+  return targetCount;
 }
 
-console.log(getCountOfWaysToTargetByDoingPlusOrMinus(numbers, target_number));
+function getAllWaysByDoingPlusOrMinus(array, currentIndex, currentSum) {
+  if (currentIndex === array.length) {
+    allWays.push(currentSum);
+    return;
+  }
+  getAllWaysByDoingPlusOrMinus(array, currentIndex + 1, currentSum + array[currentIndex]);
+  getAllWaysByDoingPlusOrMinus(array, currentIndex + 1, currentSum - array[currentIndex]);
+}
+
+// Main execution
+const numbers = [1, 1, 1, 1, 1];
+const targetNumber = 3;
+
+console.log(getCountOfWaysToTargetByDoingPlusOrMinus(numbers, targetNumber)); // 5를 반환해야 합니다!
