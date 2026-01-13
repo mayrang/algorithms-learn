@@ -22,38 +22,37 @@ class MaxHeap {
 
   delete() {
     let temp = this.items[1];
-        this.items[1] = this.items[this.items.length - 1];
-        this.items[this.items.length - 1] = temp;
-        
-        let prevMax = this.items.pop(); // 8
-        let curIndex = 1;
+    this.items[1] = this.items[this.items.length - 1];
+    this.items[this.items.length - 1] = temp;
 
-        while (curIndex <= this.items.length - 1) {
-            let leftChildIndex = curIndex * 2;
-            let rightChildIndex = curIndex * 2 + 1;
-            let maxIndex = curIndex;
+    let prevMax = this.items.pop(); // 8
+    let curIndex = 1;
 
-            if (leftChildIndex <= this.items.length - 1 && this.items[leftChildIndex] > this.items[maxIndex]) {
-                maxIndex = leftChildIndex;
-            }
+    while (curIndex <= this.items.length - 1) {
+      let leftChildIndex = curIndex * 2;
+      let rightChildIndex = curIndex * 2 + 1;
+      let maxIndex = curIndex;
 
-            if (rightChildIndex <= this.items.length - 1 && this.items[rightChildIndex] > this.items[maxIndex]) {
-                maxIndex = rightChildIndex;
-            }
+      if (leftChildIndex <= this.items.length - 1 && this.items[leftChildIndex] > this.items[maxIndex]) {
+        maxIndex = leftChildIndex;
+      }
 
-            if (maxIndex === curIndex) {
-                break;
-            }
+      if (rightChildIndex <= this.items.length - 1 && this.items[rightChildIndex] > this.items[maxIndex]) {
+        maxIndex = rightChildIndex;
+      }
 
-            // Swap elements
-            temp = this.items[curIndex];
-            this.items[curIndex] = this.items[maxIndex];
-            this.items[maxIndex] = temp;
-            curIndex = maxIndex;
-        }
+      if (maxIndex === curIndex) {
+        break;
+      }
 
-        return prevMax; // 8
+      // Swap elements
+      temp = this.items[curIndex];
+      this.items[curIndex] = this.items[maxIndex];
+      this.items[maxIndex] = temp;
+      curIndex = maxIndex;
     }
+
+    return prevMax; // 8
   }
 }
 
