@@ -1,16 +1,21 @@
-let input = 50;
+let input = 100;
 
-let memo = {
-  1: 1,
-  2: 1,
-};
+const memo = new Map();
+memo.set(1, 1);
+memo.set(2, 1);
 
-function fiboDynamicProgramming(n, fibo_memo) {
-  let val1 = fibo_memo?.[n - 1] ?? fiboDynamicProgramming(n - 1);
-  let val2 = fibo_memo?.[n - 2] ?? fiboDynamicProgramming(n - 2);
-  fibo_memo[n - 1] = val1;
-  fibo_memo[n - 2] = val2;
-  return val1 + val2;
+// 1. 메모에 이미 해당 값이 있으면 반환한다.
+// 2. 만약 없다면, 그 값을 피보나치를 통해 구하고 메모에 저장한다.
+function fiboDynamicProgramming(n, fiboMemo) {
+  if (fiboMemo.has(n)) {
+    return fiboMemo.get(n);
+  }
+
+  const nthFibo = fiboDynamicProgramming(n - 1, fiboMemo) + fiboDynamicProgramming(n - 2, fiboMemo);
+  fiboMemo.set(n, nthFibo);
+
+  return nthFibo;
 }
 
+// Main execution
 console.log(fiboDynamicProgramming(input, memo));
