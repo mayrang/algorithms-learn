@@ -1,0 +1,9 @@
+{
+  "python-envs.pythonProjects": [
+    {
+      "path": "backjoon/10807",
+      "envManager": "ms-python.python:venv",
+      "packageManager": "ms-python.python:pip"
+    }
+  ]
+}
